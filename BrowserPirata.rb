@@ -6,7 +6,7 @@ class Page
 	attr_reader :url 
   def initialize(url)
   	 @url = url
-  	 @codea_website = Nokogiri::HTML(open("http://www.codea.mx/"))
+  	 @codea_website = Nokogiri::HTML(open(@url))
 		 
   end
 
@@ -31,8 +31,8 @@ end
 
 class Browser
   def run!
-
-  	instance = Page.new("http://codea.mx")
+  	@url = gets.chomp
+  	instance = Page.new(@url)
 		instance.fetch!
 		puts instance.title
 		instance.links
